@@ -7,3 +7,20 @@ CREATE TABLE Vehicles
     Price DECIMAL(8,2) NOT NULL,
     Description VARCHAR(750) NULL
 );
+
+INSERT INTO Vehicles -- 
+       (Id,
+        Car_Model,
+        Engine,
+        Color,
+        Price,
+        Description
+)
+VALUES  
+      ('12345',
+        'Toyota',
+        'V4 BiTurbo',
+        'Black',
+         '30000.00',
+         NULL
+      );
