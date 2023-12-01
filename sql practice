@@ -1,0 +1,9 @@
+CREATE TABLE Vehicles
+(
+    Id INT PRIMARY KEY,
+    Car_Model CHAR(20) NOT NULL,
+    Engine VARCHAR(50) NOT NULL, -- Adjust the size based on your needs
+    Color CHAR(200) NOT NULL,
+    Price DECIMAL(8,2) NOT NULL,
+    Description VARCHAR(750) NULL
+);
