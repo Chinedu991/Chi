@@ -8,7 +8,7 @@ CREATE TABLE Vehicles
     Description VARCHAR(750) NULL
 );
 
-INSERT INTO Vehicles -- 
+INSERT INTO Vehicles -- ADDING VARIABLES TO YOUR TABLE
        (Id,
         Car_Model,
         Engine,
@@ -18,9 +18,40 @@ INSERT INTO Vehicles --
 )
 VALUES  
       ('12345',
-        'Toyota',
+        'Toyota', 
         'V4 BiTurbo',
         'Black',
          '30000.00',
          NULL
       );
+
+
+SELECT *
+FROM COUNTRY
+WHERE ID %2 = 0;  ---- CODE RUNS FOR EVEN NUMBER IDS OUT OF THE ID COLUMN
+
+-- aggregate functions with count and count distinct
+SELECT COUNT(*) - COUNT(DISTINCT *)
+FROM CITY;
+
+SELECT CITY, LENGTH(CITY) AS length
+FROM STATION
+ORDER BY length, CITY
+LIMIT 1;
+-- FIND THE SHORTEST CITY CHARACTERS I.E ABC, DEFG, ABC WILL BE THE SHORTEST
+SELECT CITY, LENGTH(CITY) AS length
+FROM STATION
+ORDER BY length DESC, CITY
+LIMIT 1;
+--FIND THE LONGEST CITY LENGTH IN DESCENDING ORDER
+
+SELECT CITY AS VOWEL_CITY
+FROM STATION
+WHERE CITY REGEXP'^[aeiouAEIOU]'  --REGEXP operator with the regular expression ^[aeiouAEIOU] to filter CITY names that start with any vowel (both uppercase and lowercase)
+-- FOR CITY NAMES THAT END WITH VOWELS WHERE CITY REGEXP '[aeiouAEIOU]$'
+
+select name from students
+where marks > 75 
+order by SUBSTR(name,-3),id  -- SUBSTR(NAME, -3), ID basically orders students that scored above 75 by name but last 3 characters of their name and id
+-- Example: SUBSTR('Hello', 2, 3) would return 'ell' (starting from the second character and taking three characters).
+-- If we decided to use right for example: RIGHT('Hello', 3) would return 'llo' (taking the last three characters).
