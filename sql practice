@@ -60,7 +60,7 @@ order by SUBSTR(name,-3),id  -- SUBSTR(NAME, -3), ID basically orders students t
 -- and customer info for those orders
 SELECT Customer_name, Customer_contact
 FROM Customers -- all customer info from customer tables
-WHERE cust_id IN( 
+WHERE cust_id IN(  -- note cust_id has to be in both order and customer table to work
   SELECT customer_id
   FROM orders) -- customer id from order table
   WHERE order_number IN (SELECT order_number
