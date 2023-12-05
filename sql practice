@@ -55,3 +55,29 @@ where marks > 75
 order by SUBSTR(name,-3),id  -- SUBSTR(NAME, -3), ID basically orders students that scored above 75 by name but last 3 characters of their name and id
 -- Example: SUBSTR('Hello', 2, 3) would return 'ell' (starting from the second character and taking three characters).
 -- If we decided to use right for example: RIGHT('Hello', 3) would return 'llo' (taking the last three characters).
+
+-- MULTIPLE BASIC SUBQUERIES. I.E Order number for toothbrushes, customer ID for those orders 
+-- and customer info for those orders
+SELECT Customer_name, Customer_contact
+FROM Customers -- all customer info from customer tables
+WHERE cust_id IN( 
+  SELECT customer_id
+  FROM orders) -- customer id from order table
+  WHERE order_number IN (SELECT order_number
+  FROM OrderItems
+  WHERE prod_name = 'Toothbrush'); -- finding the product name in orderitems
+
+  -- simple joins
+  SELECT vendor_name,
+  poduct_name,
+  product_price
+  FROM vendors as v, Products as p
+  WHERE v.vendor_id = p.vendor_id
+
+  --Full join customers table and orders table, with customer id column
+  SELECT customers.customername,
+  orders.orderID
+  from customers
+  FULL OUTER JOIN ORDERS ON 
+  customers.customerid = orders.customerid
+  Order BY customers.customername;
