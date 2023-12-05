@@ -81,3 +81,13 @@ WHERE cust_id IN(  -- note cust_id has to be in both order and customer table to
   FULL OUTER JOIN ORDERS ON 
   customers.customerid = orders.customerid
   Order BY customers.customername;
+
+--simple union query
+--Use a UNION to create a list of all the employee's and customer's first names and last names 
+--ordered by the last name in descending order.
+SELECT FirstName, LastName
+FROM Employees
+UNION
+SELECT FirstName, LastName
+FROM Customers
+ORDER BY LastName DESC;
