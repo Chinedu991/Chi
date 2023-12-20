@@ -1,0 +1,463 @@
+SELECT COUNT(*)
+FROM Attribute; -- total number of records for the Attribute table
+
+SELECT COUNT(*)
+FROM business; -- total number of records for the business table 
+
+SELECT COUNT(*)
+FROM Category; -- total number of records for the category table
+
+SELECT COUNT(*)
+FROM Checkin; -- total number of records for the checkin table
+
+SELECT COUNT(*)
+FROM elite_years; -- total number of records for the elite_years table
+
+SELECT COUNT(*)
+FROM friend; -- total number of records for the friend table
+
+SELECT COUNT(*)
+FROM hours; -- total number of records for the hours table
+
+SELECT COUNT(*)
+FROM photo; -- total number of records for the photo table
+
+SELECT COUNT(*)
+FROM review; -- total number of records for the review table
+
+
+SELECT COUNT(*)
+FROM tip; -- total number of records for the tip table
+
+SELECT COUNT(*)
+FROM user; -- total number of records for the user table
+
+-- all tables have a total row record of 10000
+--total distinct record of tables
+SELECT COUNT(DISTINCT id) as total_distinct_rows
+from business; --total distinct row using id is 10000
+
+SELECT COUNT(DISTINCT business_id) as total_distinct_rows
+from hours; -- total distinct row using business_id is 1562
+
+SELECT COUNT(DISTINCT business_id) as total_distinct_rows
+from category; -- total distinct row using business_id is 2643
+
+SELECT COUNT(DISTINCT business_id) as total_distinct_rows
+from attribute;  -- total distinct row using business_id is 1115
+
+SELECT COUNT(DISTINCT business_id) as total_distinct_rows
+from review; -- total distinct row using business_id is 8090
+
+SELECT COUNT(DISTINCT business_id) as total_distinct_rows
+from checkin;  -- total distinct row using business_id is 493
+
+SELECT COUNT(DISTINCT business_id) as total_distinct_rows
+from photo;  -- total distinct row using business_id is 6493
+
+SELECT COUNT(DISTINCT user_id) as total_distinct_rows
+from tip; -- total distinct row using user_id is 537
+
+SELECT COUNT(DISTINCT id) as total_distinct_rows
+from user; --total distinct row using id is 10000
+
+SELECT COUNT(DISTINCT user_id) as total_distinct_rows
+from friend; --total distinct row using user_id is 11
+
+SELECT COUNT(DISTINCT user_id) as total_distinct_rows
+from elite_years; --total distinct row using user_id is 2780
+
+--answering question 3
+SELECT COUNT(*)
+from user
+where id IS NULL AND
+name IS NULL AND
+review_count IS NULL AND
+yelping_since IS NULL AND
+useful IS NULL AND
+funny IS NULL AND
+cool IS NULL AND
+fans IS NULL AND
+average_stars IS NULL AND
+compliment_hot IS NULL AND
+compliment_more IS NULL AND
+compliment_profile IS NULL AND
+compliment_cute IS NULL AND
+compliment_list IS NULL AND
+compliment_note IS NULL AND
+compliment_plain IS NULL AND
+compliment_cool IS NULL AND
+compliment_funny IS NULL AND
+compliment_writer IS NULL AND
+compliment_photos IS NULL -- ANSWER IS NO
+
+--question 4
+SELECT MIN(stars) AS MIN_STARS,
+MAX(stars) AS MAX_STARS,
+AVG(stars) AS AVG_STARS
+FROM review;
+--MIN_STARS | MAX_STARS | AVG_STARS |
++-----------+-----------+-----------+
+|         1 |         5 |    3.7082 |
+
+SELECT MIN(stars) AS MIN_STARS,
+MAX(stars) AS MAX_STARS,
+AVG(stars) AS AVG_STARS
+FROM business;
+
+--| MIN_STARS | MAX_STARS | AVG_STARS |
++-----------+-----------+-----------+
+|       1.0 |       5.0 |    3.6549 |
++-----------+-----------+-----------+
+
+SELECT MIN(likes) AS MIN_LIKES,
+MAX(likes) AS MAX_LIKES,
+AVG(likes) AS AVG_LIKES
+FROM tip;
++-----------+-----------+-----------+
+| MIN_LIKES | MAX_LIKES | AVG_LIKES |
++-----------+-----------+-----------+
+|         0 |         2 |    0.0144 |
++-----------+-----------+-----------+
+
+SELECT MIN(count) AS MIN_COUNT,
+MAX(count) AS MAX_COUNT,
+AVG(count) AS AVG_COUNT
+FROM checkin;
++-----------+-----------+-----------+
+| MIN_COUNT | MAX_COUNT | AVG_COUNT |
++-----------+-----------+-----------+
+|         1 |        53 |    1.9414 |
++-----------+-----------+-----------+
+
+SELECT MIN(review_count) AS MIN_REVIEW_COUNT,
+MAX(review_count) AS MAX_REVIEW_COUNT,
+AVG(review_count) AS AVG_REVIEW_COUNT
+FROM user;
++------------------+------------------+------------------+
+| MIN_REVIEW_COUNT | MAX_REVIEW_COUNT | AVG_REVIEW_COUNT |
++------------------+------------------+------------------+
+|                0 |             2000 |          24.2995 |
++------------------+------------------+------------------+
+
+
+q5.
+SELECT CITY,
+REVIEW_COUNT
+FROM BUSINESS
+ORDER BY REVIEW_COUNT DESC;
++------------+--------------+
+| city       | review_count |
++------------+--------------+
+| Las Vegas  |         3873 |
+| Montréal   |         1757 |
+| Gilbert    |         1549 |
+| Las Vegas  |         1410 |
+| Las Vegas  |         1389 |
+| Las Vegas  |         1252 |
+| Las Vegas  |         1116 |
+| Las Vegas  |         1084 |
+| Las Vegas  |          961 |
+| Gilbert    |          902 |
+| Las Vegas  |          864 |
+| Scottsdale |          823 |
+| Las Vegas  |          821 |
+| Las Vegas  |          786 |
+| Henderson  |          785 |
+| Toronto    |          778 |
+| Las Vegas  |          768 |
+| Las Vegas  |          758 |
+| Scottsdale |          726 |
+| Cleveland  |          723 |
+| Las Vegas  |          720 |
+| Charlotte  |          715 |
+| Phoenix    |          711 |
+| Las Vegas  |          706 |
+| Phoenix    |          700 |
++------------+--------------+
+(Output limit exceeded, 25 of 10000 total rows shown) --
+
+q6i
+SELECT
+COUNT(STARS) AS COUNT_STAR_RATING,
+STARS AS STAR_RATING,
+CITY
+FROM BUSINESS
+WHERE CITY = 'Avon'
+ORDER BY STAR_RATING
++-------------------+-------------+------+
+| COUNT_STAR_RATING | STAR_RATING | city |
++-------------------+-------------+------+
+|                10 |         4.0 | Avon |
++-------------------+-------------+------+
+
+6II
+SELECT
+COUNT(STARS) AS COUNT_STAR_RATING,
+STARS AS STAR_RATING,
+CITY
+FROM BUSINESS
+WHERE CITY = 'Beachwood'
+ORDER BY STAR_RATING
+
++-------------------+-------------+-----------+
+| COUNT_STAR_RATING | STAR_RATING | city      |
++-------------------+-------------+-----------+
+|                14 |         5.0 | Beachwood |
++-------------------+-------------+-----------+
+
+7.
+SELECT id,
+name,
+review_count
+FROM user
+ORDER BY review_count DESC
+LIMIT 3;
+
++------------------------+--------+--------------+
+| id                     | name   | review_count |
++------------------------+--------+--------------+
+| -G7Zkl1wIWBBmD0KRy_sCw | Gerald |         2000 |
+| -3s52C4zL_DHRK0ULG6qtg | Sara   |         1629 |
+| -8lbUNlXVSoXqaRRiHiSNg | Yuri   |         1339 |
++------------------------+--------+--------------+
+
+8.
+SELECT REVIEW_COUNT,
+FANS
+FROM USER
+ORDER BY FANS DESC
+--------------+------+
+| review_count | fans |
++--------------+------+
+|          609 |  503 |
+|          968 |  497 |
+|         1153 |  311 |
+|         2000 |  253 |
+|          930 |  173 |
+|          813 |  159 |
+|          377 |  133 |
+|         1215 |  126 |
+|          862 |  124 |
+|          834 |  120 |
+|          861 |  115 |
+|          408 |  111 |
+|          255 |  105 |
+|         1039 |  104 |
+|          694 |  101 |
+|         1246 |  101 |
+|          307 |   96 |
+|          584 |   89 |
+|          842 |   85 |
+|          220 |   84 |
+|          408 |   81 |
+|          178 |   80 |
+|          754 |   78 |
+|         1339 |   76 |
+|          161 |   73 |
++--------------+------+
+--FROM THE FINDINGS HERE THERES A LARGE DIFFERENCE BETWEEN NO. OF FANS AND REVIEW, IT SEEMS THERE IS NO CORRELATION, PROBABLY A NEGATIVE NUMBER. IN MYSQL CODE WOULD HAVE BEEN CORR(REVIEW_COUNT, FANS) AS CORRELATION
+
+9.SELECT
+    COUNT(CASE WHEN R.TEXT LIKE '%HATE%' THEN U.REVIEW_COUNT END) AS TOTAL_HATE_REVIEW,
+    COUNT(CASE WHEN R.TEXT LIKE '%LOVE%' THEN U.REVIEW_COUNT END) AS TOTAL_LOVE_REVIEW,
+    R.TEXT
+FROM
+    REVIEW R
+JOIN
+    USER U ON R.ID = U.ID
+WHERE
+    R.TEXT LIKE '%HATE%' OR R.TEXT LIKE '%LOVE%'
+GROUP BY
+    R.TEXT
+ORDER BY
+    R.TEXT;
+
+-- THERE ARE MORE REVIEWS WITH LOVE, I ALSO TRIED DOING THE COMMENTS INDIVIDUALLY AND STILL FOUND LOVE WAS MORE
+
+10. SELECT NAME,
+ID,
+FANS
+FROM USER
+ORDER BY FANS DESC
+LIMIT 10;
+
++-----------+------------------------+------+
+| name      | id                     | fans |
++-----------+------------------------+------+
+| Amy       | -9I98YbNQnLdAmcYfb324Q |  503 |
+| Mimi      | -8EnCioUmDygAbsYZmTeRQ |  497 |
+| Harald    | --2vR0DIsmQ6WfcSzKWigw |  311 |
+| Gerald    | -G7Zkl1wIWBBmD0KRy_sCw |  253 |
+| Christine | -0IiMAZI2SsQ7VmyzJjokQ |  173 |
+| Lisa      | -g3XIcCb2b-BD0QBCcq2Sw |  159 |
+| Cat       | -9bbDysuiWeo2VShFJJtcw |  133 |
+| William   | -FZBTkAZEXoP7CYvRV2ZwQ |  126 |
+| Fran      | -9da1xk7zgnnfO1uTVYGkA |  124 |
+| Lissa     | -lh59ko3dxChBSZ9U7LfUw |  120 |
++-----------+------------------------+------+
+
+PART2.
+SELECT 
+B.CITY,
+C.CATEGORY,
+AVG(B.STARS) AS OVERALL_STAR
+FROM CATEGORY C, BUSINESS B
+WHERE C.BUSINESS_ID = B.ID
+GROUP BY B.CITY
+ORDER BY OVERALL_STAR ASC
++---------------------+---------------------------+-------------------+
+| city                | category                  |      OVERALL_STAR |
++---------------------+---------------------------+-------------------+
+| Mentor              | Restaurants               |               1.0 |
+| Oakwood Village     | Event Planning & Services |               1.5 |
+| Richmond Hill       | Beauty & Spas             |               1.5 |
+| Champaign           | Mexican                   |               2.0 |
+| Coraopolis          | Nightlife                 |               2.0 |
+| Pineville           | Hotels & Travel           |               2.0 |
+| Stuttgart-Vaihingen | Metro Stations            |               2.0 |
+| Gilbert             | Fast Food                 |               2.5 |
+| Glendale            | Restaurants               |               2.5 |
+| Rocky River         | Hair Salons               |               2.5 |
+| Avondale            | Health & Medical          |               3.0 |
+| Hemmingen           | German                    |               3.0 |
+| Hudson              | Pubs                      |               3.0 |
+| North Randall       | Restaurants               |               3.0 |
+| York                | Food                      |               3.0 |
+| Edinburgh           | Indian                    | 3.227272727272727 |
+| Markham             | Libraries                 |              3.25 |
+| Montréal            | Indian                    |              3.25 |
+| Stuttgart           | Shopping                  |            3.3125 |
+| Mississauga         | Chicken Wings             |             3.475 |
+| Aurora              | Restaurants               |               3.5 |
+| Fitchburg           | American (Traditional)    |               3.5 |
+| Fountain Hills      | Chinese                   |               3.5 |
+| Inverness           | Indian                    |               3.5 |
+| Litchfield Park     | Restaurants               |               3.5 |
++---------------------+---------------------------+-------------------+
+-- WILL BE PICKING Pubs IN Hudson FOR 3 STARS
+
+
+SELECT 
+B.CITY,
+C.CATEGORY,
+AVG(B.STARS) AS OVERALL_STAR
+FROM CATEGORY C, BUSINESS B
+WHERE C.BUSINESS_ID = B.ID
+GROUP BY B.CITY
+ORDER BY OVERALL_STAR DESC
++----------------+-----------------------------+--------------------+
+| city           | category                    |       OVERALL_STAR |
++----------------+-----------------------------+--------------------+
+| Gastonia       | Auto Repair                 |                5.0 |
+| Sun City       | Mobile Phone Repair         |                5.0 |
+| Surprise       | Pet Services                |                5.0 |
+| Oakville       | Mediterranean               |  4.571428571428571 |
+| Cottage Grove  | Active Life                 |                4.5 |
+| Middleton      | Framing                     |                4.5 |
+| Peninsula      | Nightlife                   |                4.5 |
+| Scarborough    | Home Services               |                4.5 |
+| Chandler       | Automotive                  |  4.478260869565218 |
+| Henderson      | Plumbing                    |  4.340909090909091 |
+| Cleveland      | Vietnamese                  |  4.314814814814815 |
+| Charlotte      | Automotive                  |  4.195121951219512 |
+| Tempe          | Shopping                    |               4.16 |
+| Pittsburgh     | Food                        |  4.029411764705882 |
+| Las Vegas      | Japanese                    | 4.0256410256410255 |
+| Chesterland    | Restaurants                 |                4.0 |
+| Cuyahoga Falls | Restaurants                 |                4.0 |
+| Madison        | Pizza                       |                4.0 |
+| Mantua         | Hotels & Travel             |                4.0 |
+| Medina         | Bars                        |                4.0 |
+| Scottsdale     | Health & Medical            |                4.0 |
+| Strongsville   | Sewing & Alterations        |                4.0 |
+| Tolleson       | Mexican                     |                4.0 |
+| Westlake       | American (New)              |                4.0 |
+| Mesa           | Check Cashing/Pay-day Loans | 3.9565217391304346 |
++----------------+-----------------------------+--------------------+ --
+WILL BE PICKING Auto Repair IN Gastonia FOR 5 STARS
+
+SELECT 
+    B.CITY,
+    C.CATEGORY,
+    AVG(B.STARS) AS OVERALL_STAR,
+    H.HOURS
+FROM 
+    CATEGORY C
+JOIN 
+    BUSINESS B ON C.BUSINESS_ID = B.ID
+JOIN
+    HOURS H ON B.ID = H.BUSINESS_ID
+WHERE 
+    (B.CITY = 'Gastonia' AND C.CATEGORY = 'Auto Repair')
+    OR
+    (B.CITY = 'Hudson' AND C.CATEGORY = 'Pubs')
+GROUP BY 
+    B.CITY, C.CATEGORY, H.HOURS;
+-- in Hudson the hours mon-saturday are late hours  and are 3hours 30 mins open, sunday open for 2h30 mins
+
+the two groups have a difference in hours
+
++----------+-------------+--------------+----------------------+
+| city     | category    | OVERALL_STAR | hours                |
++----------+-------------+--------------+----------------------+
+| Gastonia | Auto Repair |          5.0 | Friday|8:30-17:00    |
+| Gastonia | Auto Repair |          5.0 | Monday|8:30-17:00    |
+| Gastonia | Auto Repair |          5.0 | Saturday|9:00-15:00  |
+| Gastonia | Auto Repair |          5.0 | Thursday|8:30-17:00  |
+| Gastonia | Auto Repair |          5.0 | Tuesday|8:30-17:00   |
+| Gastonia | Auto Repair |          5.0 | Wednesday|8:30-17:00 |
+| Hudson   | Pubs        |          3.0 | Friday|11:00-2:30    |
+| Hudson   | Pubs        |          3.0 | Monday|11:00-2:30    |
+| Hudson   | Pubs        |          3.0 | Saturday|11:00-2:30  |
+| Hudson   | Pubs        |          3.0 | Sunday|12:00-2:30    |
+| Hudson   | Pubs        |          3.0 | Thursday|11:00-2:30  |
+| Hudson   | Pubs        |          3.0 | Tuesday|11:00-2:30   |
+| Hudson   | Pubs        |          3.0 | Wednesday|11:00-2:30 |
++----------+-------------+--------------+----------------------+
+
+PART 2 II
+SELECT 
+    B.CITY,
+    C.CATEGORY,
+    AVG(B.STARS) AS OVERALL_STAR,
+    B.REVIEW_COUNT
+FROM 
+    CATEGORY C
+JOIN 
+    BUSINESS B ON C.BUSINESS_ID = B.ID
+WHERE 
+    (B.CITY = 'Gastonia' AND C.CATEGORY = 'Auto Repair')
+    OR
+    (B.CITY = 'Hudson' AND C.CATEGORY = 'Pubs')
+GROUP BY 
+    B.CITY, C.CATEGORY, B.REVIEW_COUNT
++----------+-------------+--------------+--------------+
+| city     | category    | OVERALL_STAR | review_count |
++----------+-------------+--------------+--------------+
+| Gastonia | Auto Repair |          5.0 |            4 |
+| Hudson   | Pubs        |          3.0 |            5 |
++----------+-------------+--------------+--------------+
+--REVIEW COUNT IS LARGER FOR THE LOWER STAR
+
+part 2 (2I)
+
+
+SELECT 
+AVG(STARS) AS AVERAGE_STARS,
+AVG(REVIEW_COUNT) AS AVERAGE_REVIEW,
+IS_OPEN
+FROM BUSINESS
+WHERE (IS_OPEN = 1) OR
+(IS_OPEN = 0)
+GROUP BY IS_OPEN
+
++-------------------+--------------------+---------+
+|     AVERAGE_STARS |     AVERAGE_REVIEW | is_open |
++-------------------+--------------------+---------+
+| 3.520394736842105 | 23.198026315789473 |       0 |
+| 3.679009433962264 | 31.757075471698112 |       1 |
++-------------------+--------------------+---------+
+
+I. DIFFERENCE 1  on average the closed stores have less star ratings than the open ones
+ii. difference 2 on avarage the closed stores also have less reveiews
